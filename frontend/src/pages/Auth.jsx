@@ -9,8 +9,9 @@ import axios from "axios";
 import { serverUrl } from "../App";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
-const Auth = () => {
+const Auth = ({isModel = false}) => {
   const dispatch = useDispatch();
   const handleGoogleAuth = async () => {
     try {
@@ -24,6 +25,7 @@ const Auth = () => {
         { withCredentials: true },
       );
       dispatch(setUserData(result.data));
+      // navigate("/")
     } catch (error) {
       console.log(error);
       dispatch(setUserData(null));
@@ -47,7 +49,7 @@ const Auth = () => {
         {/* data like button  */}
         <h1 className="text-2xl md:text-2xl font-medium text-center leading-snug mb-4">
           Continue with
-          <span className="bg-green-200 text-green-600 px-5 py-2 mt-1 rounded-full  inline-flex items-center gap-2 text-xl ">
+          <span className="bg-green-200 text-green-600 px-5  py-2 mt-1 rounded-full  inline-flex items-center gap-2 text-xl ">
             AI Smart Interview
             <IoSparklesSharp />
           </span>
@@ -71,3 +73,5 @@ const Auth = () => {
 };
 
 export default Auth;
+
+
